@@ -21,18 +21,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var weightButton: UIBarButtonItem!
     @IBOutlet weak var clearButton: UIButton!
     
-    @IBOutlet weak var topTextField: UITextField!
+    @IBOutlet weak var topTextFieldOutlet: UITextField!
     @IBOutlet weak var bottonTextField: UITextField!
     
     //MARK: - Properties
-
+    var calculator = Calculator()
+    var currentSelection = ""
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        topTextField.delegate = self
+        topTextFieldOutlet.delegate = self
         bottonTextField.delegate = self
 
         setupToolBar()
@@ -63,9 +64,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func clearButton(_ sender: UIButton) {
-        topTextField.text = ""
-        bottonTextField.text = ""
+        clearTextField()
     }
+    
+
     
     
     //MARK: - Setup
@@ -85,52 +87,110 @@ class ViewController: UIViewController {
     
     
     func setActiveButton(buttonSelected: UIBarButtonItem){
-        
-        
         //Unwarp
-        guard let buttonSelected = buttonSelected.title else { return }
+        guard let selectedButton = buttonSelected.title else { return }
         
-       currentSelection(buttonSelected: buttonSelected)
+       currentSelection(selectedButton)
         
         //Array of button IBOutlets
         let buttonsArray = [distanceButton,temperatureButton,lengthButton, volumenButton, weightButton ]
         
         //Change the color to blue if selected else to gray
         for button in buttonsArray{
-            if button?.title == buttonSelected{
+            if button?.title == selectedButton{
                 button?.tintColor = UIColor.systemBlue
-                print(buttonSelected)
             }else{
                 button?.tintColor = UIColor.systemGray
             }
         }
     }
     
-    func currentSelection(buttonSelected: String)  {
-
-        switch buttonSelected {
+    func currentSelection(_ selectedButton: String)  {
+        
+        //Clear textField every time user change selection
+        clearTextField()
+        currentSelection = selectedButton
+        //Change placeholder and call corresponding method
+        switch selectedButton {
         case "temp":
-            topTextField.placeholder = "F"
+            topTextFieldOutlet.placeholder = "F"
             bottonTextField.placeholder = "C"
-            //Call call method here
         case "lenght":
-            topTextField.placeholder = "Feet"
+            topTextFieldOutlet.placeholder = "Feet"
             bottonTextField.placeholder = "Meters"
         case "volumen":
-            topTextField.placeholder = "Gallons"
+            topTextFieldOutlet.placeholder = "Gallons"
             bottonTextField.placeholder = "Liters"
         case "weight":
-            topTextField.placeholder = "Pounds"
+            topTextFieldOutlet.placeholder = "Pounds"
             bottonTextField.placeholder = "Kg"
         default:
-            topTextField.placeholder = "Miles"
+            topTextFieldOutlet.placeholder = "Miles"
             bottonTextField.placeholder = "KM"
         }
     }
 
+    func clearTextField() {
+        topTextFieldOutlet.text = ""
+        bottonTextField.text = ""
+    }
+    
+
 }
 
+
+//MARK: - UITextFieldDelegate
 extension ViewController: UITextFieldDelegate{
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        //Clear fields when the user try to enter a new value to start over
+        topTextFieldOutlet.text =  ""
+        bottonTextField.text = ""
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //Dismiss keyboard after user click return
+        topTextFieldOutlet.endEditing(true)
+        bottonTextField.endEditing(true)
+        return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        //Use to pass the appropiate method to the getResult
+        switch currentSelection {
+        case "temp":
+             getResult(operation: calculator.temp)
+            return
+        case "lenght":
+            topTextFieldOutlet.placeholder = "Feet"
+            bottonTextField.placeholder = "Meters"
+        case "volumen":
+            topTextFieldOutlet.placeholder = "Gallons"
+            bottonTextField.placeholder = "Liters"
+        case "weight":
+            topTextFieldOutlet.placeholder = "Pounds"
+            bottonTextField.placeholder = "Kg"
+        default:
+            //Helper method to conditionaly
+            getResult(operation: calculator.distance)
+        }
+
+    }
+    
+    func getResult(operation: (String, String)-> String) {
+        //Get the input value
+        guard let top = topTextFieldOutlet.text else { return }
+        guard let botton = bottonTextField.text else { return }
+        
+        //Check a field is empty then invoke the method to get the result
+        if top.isEmpty{
+            topTextFieldOutlet.text = operation( botton, "")
+        }else if botton.isEmpty{
+            bottonTextField.text = operation("", top)
+        }
+    }
     
 
 }

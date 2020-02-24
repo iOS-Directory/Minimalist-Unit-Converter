@@ -42,7 +42,7 @@
                                                     <constraint firstAttribute="height" constant="31" id="b1C-fu-fHc"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="equal" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="VbD-Qj-evK">
                                                 <rect key="frame" x="187" y="357.5" width="24" height="13"/>
@@ -55,7 +55,7 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="KM" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KBT-vU-mkP">
                                                 <rect key="frame" x="20" y="499" width="358" height="31"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                                                <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gtb-ZJ-xwG">
                                                 <rect key="frame" x="166.5" y="653" width="65" height="40"/>
@@ -134,7 +134,7 @@
                         <outlet property="distanceButton" destination="WpI-M7-QEL" id="F9P-Xc-Qc8"/>
                         <outlet property="lengthButton" destination="pu2-xE-2jr" id="9bn-BS-nSr"/>
                         <outlet property="temperatureButton" destination="9VS-th-3X7" id="3Vn-yY-BxF"/>
-                        <outlet property="topTextField" destination="kQP-sv-3IW" id="8QU-Ke-fGV"/>
+                        <outlet property="topTextFieldOutlet" destination="kQP-sv-3IW" id="8QU-Ke-fGV"/>
                         <outlet property="volumenButton" destination="2d7-2f-6RA" id="zrQ-wn-JDO"/>
                         <outlet property="weightButton" destination="rTd-rN-JdI" id="8AA-Uk-uqV"/>
                     </connections>
