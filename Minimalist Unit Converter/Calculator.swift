@@ -14,7 +14,7 @@ struct Calculator {
     func distance(miles: String = "", km: String = "") -> String {
 
         var finalValue = 00.00
-
+        
         if !miles.isEmpty{
             let num = Double(miles)
             finalValue = 0.62 * num!
@@ -39,7 +39,7 @@ struct Calculator {
                let num = Double(celsius)
                finalValue = (num! - 32) * 5/9
            }
-           return String(format:"%.2f", finalValue)
+           return String(format:"%.0f", finalValue)
        }
     
     
