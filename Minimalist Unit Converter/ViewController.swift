@@ -8,6 +8,7 @@
 
 import UIKit
 import FontAwesome_swift
+import TextFieldEffects
 
 class ViewController: UIViewController {
     
@@ -21,7 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var weightButton: UIBarButtonItem!
     @IBOutlet weak var clearButton: UIButton!
     
-    @IBOutlet weak var topTextFieldOutlet: UITextField!
+    @IBOutlet weak var topTextFieldOutlet: MadokaTextField!
     @IBOutlet weak var bottonTextField: UITextField!
     
     //MARK: - Properties
@@ -32,11 +33,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+ 
         topTextFieldOutlet.delegate = self
         bottonTextField.delegate = self
 
-        setupToolBar()
+        prepareToolBar()
+        
         //Selected distanceButton as default when view loads
         setActiveButton(buttonSelected: distanceButton)
       
@@ -70,8 +72,9 @@ class ViewController: UIViewController {
 
     
     
-    //MARK: - Setup
-    func setupToolBar() {
+    //MARK: - Setup UI
+    
+    func prepareToolBar() {
         
           distanceButton.image = UIImage.fontAwesomeIcon(name: .tachometerAlt , style: .solid, textColor: UIColor.blue, size: CGSize(width: 30, height: 30))
         temperatureButton.image = UIImage.fontAwesomeIcon(name: .thermometerHalf , style: .solid, textColor: UIColor.blue, size: CGSize(width: 30, height: 30))
@@ -83,13 +86,13 @@ class ViewController: UIViewController {
         weightButton.image = UIImage.fontAwesomeIcon(name: .balanceScaleRight , style: .solid, textColor: UIColor.blue, size: CGSize(width: 30, height: 30))
         
         clearButton.layer.cornerRadius = 10
+        
+ 
     }
     
-    
+    //Set the selected toolbar button as active
     func setActiveButton(buttonSelected: UIBarButtonItem){
-        //Unwarp
         guard let selectedButton = buttonSelected.title else { return }
-        
        currentSelection(selectedButton)
         
         //Array of button IBOutlets
@@ -105,12 +108,15 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    //Change the placeholder base on current delection
     func currentSelection(_ selectedButton: String)  {
         
         //Clear textField every time user change selection
         clearTextField()
+        //set the currently selected button to also use it in textFieldDidEndEditing
         currentSelection = selectedButton
-        //Change placeholder and call corresponding method
+        //Change placeholder
         switch selectedButton {
         case "temp":
             topTextFieldOutlet.placeholder = "F"
@@ -127,27 +133,43 @@ class ViewController: UIViewController {
         default:
             topTextFieldOutlet.placeholder = "Miles"
             bottonTextField.placeholder = "KM"
+          
         }
     }
 
+    //Clear fields
     func clearTextField() {
         topTextFieldOutlet.text = ""
         bottonTextField.text = ""
     }
+    
+//    func prepareTest() {
+//        let textField = MadokaTextField(frame: CGRect(x: 200, y: 190, width: 200, height: 20))
+//        textField.placeholderColor = .gray
+//
+//        textField.placeholder = "Testing"
+//
+//        view.addSubview(textField)
+//
+//        textField.centerXAnchor.constraint(equalTo: textField.centerXAnchor).isActive = true
+//        textField.centerYAnchor.constraint(equalTo: textField.centerYAnchor).isActive = true
+//    }
     
 
 }
 
 
 //MARK: - UITextFieldDelegate
+
 extension ViewController: UITextFieldDelegate{
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         //Clear fields when the user try to enter a new value to start over
-        topTextFieldOutlet.text =  ""
-        bottonTextField.text = ""
+        clearTextField()
+        
         return true
     }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //Dismiss keyboard after user click return
@@ -158,37 +180,19 @@ extension ViewController: UITextFieldDelegate{
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-        //Use to pass the appropiate method to the getResult
-        switch currentSelection {
-        case "temp":
-             getResult(operation: calculator.temp)
-            return
-        case "lenght":
-            topTextFieldOutlet.placeholder = "Feet"
-            bottonTextField.placeholder = "Meters"
-        case "volumen":
-            topTextFieldOutlet.placeholder = "Gallons"
-            bottonTextField.placeholder = "Liters"
-        case "weight":
-            topTextFieldOutlet.placeholder = "Pounds"
-            bottonTextField.placeholder = "Kg"
-        default:
-            //Helper method to conditionaly
-            getResult(operation: calculator.distance)
-        }
-
+        getResult()
     }
     
-    func getResult(operation: (String, String)-> String) {
+    func getResult() {
         //Get the input value
         guard let top = topTextFieldOutlet.text else { return }
         guard let botton = bottonTextField.text else { return }
         
         //Check a field is empty then invoke the method to get the result
         if top.isEmpty{
-            topTextFieldOutlet.text = operation( botton, "")
+            topTextFieldOutlet.text = calculator.calResult(type: currentSelection, topValue: "", bottonValue: botton)
         }else if botton.isEmpty{
-            bottonTextField.text = operation("", top)
+            bottonTextField.text = calculator.calResult(type: currentSelection, topValue: top, bottonValue: "")
         }
     }
     

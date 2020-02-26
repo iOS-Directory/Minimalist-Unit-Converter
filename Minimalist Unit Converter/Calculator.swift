@@ -9,38 +9,58 @@
 import Foundation
 
 struct Calculator {
-    
-    
-    func distance(miles: String = "", km: String = "") -> String {
 
+    
+    
+    func calResult(type: String, topValue: String = "", bottonValue: String = "") -> String {
+        //Switch to pass correct equation base on selected method
+        var topEquation: Double{
+            var tempValue = 00.00
+            let num = Double(topValue)
+            switch type {
+            case "temp":
+                tempValue = (num! - 32) * 5/9
+            case "lenght":
+                tempValue = num! * 9/5 + 32
+            case "volumen":
+                tempValue = num! * 9/5 + 32
+            case "weight":
+                tempValue = num! * 9/5 + 32
+            default:
+                tempValue = 1.609 * num!
+            }
+            return tempValue
+        }
+        
+        var bottonEquation: Double{
+              var tempValue = 00.00
+              let num = Double(bottonValue)
+              switch type {
+              case "temp":
+                  tempValue = num! * 9/5 + 32
+              case "lenght":
+                  tempValue = num! * 9/5 + 32
+              case "volumen":
+                  tempValue = num! * 9/5 + 32
+              case "weight":
+                  tempValue = num! * 9/5 + 32
+              default:
+                  tempValue = 0.621 * num!
+              }
+              return tempValue
+          }
+        
+        
         var finalValue = 00.00
         
-        if !miles.isEmpty{
-            let num = Double(miles)
-            finalValue = 0.62 * num!
-
-        }else if !km.isEmpty{
-            let num = Double(km)
-            finalValue = 1.60 * num!
+        if !topValue.isEmpty{
+            finalValue = topEquation
+        }else if !bottonValue.isEmpty{
+            finalValue = bottonEquation
         }
+        //Return final value as String
         return String(format:"%.2f", finalValue)
     }
-    
-    
-    func temp(fahrenheit: String = "", celsius: String = "") -> String {
-
-           var finalValue = 00.00
-
-           if !fahrenheit.isEmpty{
-               let num = Double(fahrenheit)
-               finalValue = num! * 9/5 + 32
-
-           }else if !celsius.isEmpty{
-               let num = Double(celsius)
-               finalValue = (num! - 32) * 5/9
-           }
-           return String(format:"%.0f", finalValue)
-       }
     
     
 }
