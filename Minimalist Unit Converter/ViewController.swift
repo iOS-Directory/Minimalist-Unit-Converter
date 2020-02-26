@@ -122,13 +122,13 @@ class ViewController: UIViewController {
             topTextFieldOutlet.placeholder = "F"
             bottonTextField.placeholder = "C"
         case "lenght":
-            topTextFieldOutlet.placeholder = "Feet"
-            bottonTextField.placeholder = "Meters"
+            topTextFieldOutlet.placeholder = "Foot"
+            bottonTextField.placeholder = "Metre"
         case "volumen":
-            topTextFieldOutlet.placeholder = "Gallons"
-            bottonTextField.placeholder = "Liters"
+            topTextFieldOutlet.placeholder = "Gallon"
+            bottonTextField.placeholder = "Litre"
         case "weight":
-            topTextFieldOutlet.placeholder = "Pounds"
+            topTextFieldOutlet.placeholder = "Pound"
             bottonTextField.placeholder = "Kg"
         default:
             topTextFieldOutlet.placeholder = "Miles"
@@ -183,6 +183,7 @@ extension ViewController: UITextFieldDelegate{
         getResult()
     }
     
+    //Helper method
     func getResult() {
         //Get the input value
         guard let top = topTextFieldOutlet.text else { return }
