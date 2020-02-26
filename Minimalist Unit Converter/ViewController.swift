@@ -8,7 +8,6 @@
 
 import UIKit
 import FontAwesome_swift
-import TextFieldEffects
 
 class ViewController: UIViewController {
     
@@ -22,8 +21,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var weightButton: UIBarButtonItem!
     @IBOutlet weak var clearButton: UIButton!
     
-    @IBOutlet weak var topTextFieldOutlet: MadokaTextField!
+    @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottonTextField: UITextField!
+    
+    @IBOutlet weak var topLabel: UILabel!
+    @IBOutlet weak var bottonLabel: UILabel!
+    
     
     //MARK: - Properties
     var calculator = Calculator()
@@ -34,7 +37,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
  
-        topTextFieldOutlet.delegate = self
+        topTextField.delegate = self
         bottonTextField.delegate = self
 
         prepareToolBar()
@@ -119,42 +122,29 @@ class ViewController: UIViewController {
         //Change placeholder
         switch selectedButton {
         case "temp":
-            topTextFieldOutlet.placeholder = "F"
-            bottonTextField.placeholder = "C"
+            topLabel.text = "F"
+            bottonLabel.text = "C"
         case "lenght":
-            topTextFieldOutlet.placeholder = "Foot"
-            bottonTextField.placeholder = "Metre"
+            topLabel.text = "Foot"
+            bottonLabel.text = "Metre"
         case "volumen":
-            topTextFieldOutlet.placeholder = "Gallon"
-            bottonTextField.placeholder = "Litre"
+            topLabel.text = "Gallon"
+            bottonLabel.text = "Litre"
         case "weight":
-            topTextFieldOutlet.placeholder = "Pound"
-            bottonTextField.placeholder = "Kg"
+            topLabel.text = "Pound"
+            bottonLabel.text = "Kg"
         default:
-            topTextFieldOutlet.placeholder = "Miles"
-            bottonTextField.placeholder = "KM"
+            topLabel.text = "Miles"
+            bottonLabel.text = "KM"
           
         }
     }
 
     //Clear fields
     func clearTextField() {
-        topTextFieldOutlet.text = ""
+        topTextField.text = ""
         bottonTextField.text = ""
     }
-    
-//    func prepareTest() {
-//        let textField = MadokaTextField(frame: CGRect(x: 200, y: 190, width: 200, height: 20))
-//        textField.placeholderColor = .gray
-//
-//        textField.placeholder = "Testing"
-//
-//        view.addSubview(textField)
-//
-//        textField.centerXAnchor.constraint(equalTo: textField.centerXAnchor).isActive = true
-//        textField.centerYAnchor.constraint(equalTo: textField.centerYAnchor).isActive = true
-//    }
-    
 
 }
 
@@ -173,7 +163,7 @@ extension ViewController: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //Dismiss keyboard after user click return
-        topTextFieldOutlet.endEditing(true)
+        topTextField.endEditing(true)
         bottonTextField.endEditing(true)
         return true
     }
@@ -186,12 +176,12 @@ extension ViewController: UITextFieldDelegate{
     
     
     func getResult() {
-        guard let top = topTextFieldOutlet.text else { return }
+        guard let top = topTextField.text else { return }
         guard let botton = bottonTextField.text else { return }
         
         //Check if the field is empty then invoke the method to get the result to show result on the oppositive field
         if top.isEmpty{
-            topTextFieldOutlet.text = calculator.calResult(type: currentSelection, topValue: "", bottonValue: botton)
+            topTextField.text = calculator.calResult(type: currentSelection, topValue: "", bottonValue: botton)
         }else if botton.isEmpty{
             bottonTextField.text = calculator.calResult(type: currentSelection, topValue: top, bottonValue: "")
         }

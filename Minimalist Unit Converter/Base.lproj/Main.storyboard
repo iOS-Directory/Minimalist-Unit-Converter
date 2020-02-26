@@ -36,14 +36,33 @@
                                                     <constraint firstAttribute="width" constant="75" id="jnl-re-G4S"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Miles" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kQP-sv-3IW">
-                                                <rect key="frame" x="20" y="198" width="358" height="31"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vDH-wP-JjC">
+                                                <rect key="frame" x="16" y="197.5" width="366" height="32"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miles" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ta-la-aw7">
+                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="32"/>
+                                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="sE4-73-Ds8"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kQP-sv-3IW">
+                                                        <rect key="frame" x="60" y="0.0" width="306" height="32"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="32" id="0Qj-xj-PKk"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="31" id="b1C-fu-fHc"/>
+                                                    <constraint firstItem="kQP-sv-3IW" firstAttribute="height" secondItem="5Ta-la-aw7" secondAttribute="height" id="1SZ-HF-D7o"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
+                                            </stackView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="equal" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="VbD-Qj-evK">
                                                 <rect key="frame" x="187" y="357.5" width="24" height="13"/>
                                                 <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -52,11 +71,33 @@
                                                     <constraint firstAttribute="height" constant="24" id="ufV-yI-9hn"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="KM" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KBT-vU-mkP">
-                                                <rect key="frame" x="20" y="499" width="358" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jiq-Cl-ZAQ">
+                                                <rect key="frame" x="16" y="498.5" width="366" height="32"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNK-VM-irw">
+                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="32"/>
+                                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="byG-GY-Fow"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KBT-vU-mkP">
+                                                        <rect key="frame" x="60" y="0.0" width="306" height="32"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="32" id="DCu-yZ-6a6"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="KBT-vU-mkP" firstAttribute="height" secondItem="cNK-VM-irw" secondAttribute="height" id="vpa-iU-uST"/>
+                                                </constraints>
+                                            </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gtb-ZJ-xwG">
                                                 <rect key="frame" x="166.5" y="653" width="65" height="40"/>
                                                 <color key="backgroundColor" red="0.24313725489999999" green="0.3921568627" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -75,9 +116,8 @@
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="KBT-vU-mkP" firstAttribute="height" secondItem="kQP-sv-3IW" secondAttribute="height" id="8GY-cu-g0y"/>
-                                            <constraint firstItem="KBT-vU-mkP" firstAttribute="width" secondItem="kQP-sv-3IW" secondAttribute="width" id="Xrv-0L-JSG"/>
-                                            <constraint firstAttribute="trailing" secondItem="kQP-sv-3IW" secondAttribute="trailing" constant="20" symbolic="YES" id="hHM-ef-ofI"/>
+                                            <constraint firstAttribute="trailing" secondItem="vDH-wP-JjC" secondAttribute="trailing" constant="16" id="0aR-sb-Ief"/>
+                                            <constraint firstItem="Jiq-Cl-ZAQ" firstAttribute="width" secondItem="vDH-wP-JjC" secondAttribute="width" id="o5i-1c-SnT"/>
                                         </constraints>
                                     </stackView>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kcb-r7-GUT">
@@ -129,12 +169,14 @@
                         <viewLayoutGuide key="safeArea" id="hez-Bh-dND"/>
                     </view>
                     <connections>
+                        <outlet property="bottonLabel" destination="cNK-VM-irw" id="Xp8-Wh-zxm"/>
                         <outlet property="bottonTextField" destination="KBT-vU-mkP" id="hoq-Tc-Nj4"/>
                         <outlet property="clearButton" destination="gtb-ZJ-xwG" id="APX-Lv-wW8"/>
                         <outlet property="distanceButton" destination="WpI-M7-QEL" id="F9P-Xc-Qc8"/>
                         <outlet property="lengthButton" destination="pu2-xE-2jr" id="9bn-BS-nSr"/>
                         <outlet property="temperatureButton" destination="9VS-th-3X7" id="3Vn-yY-BxF"/>
-                        <outlet property="topTextFieldOutlet" destination="kQP-sv-3IW" id="8QU-Ke-fGV"/>
+                        <outlet property="topLabel" destination="5Ta-la-aw7" id="LEd-Ty-yMi"/>
+                        <outlet property="topTextField" destination="kQP-sv-3IW" id="8QU-Ke-fGV"/>
                         <outlet property="volumenButton" destination="2d7-2f-6RA" id="zrQ-wn-JDO"/>
                         <outlet property="weightButton" destination="rTd-rN-JdI" id="8AA-Uk-uqV"/>
                     </connections>
