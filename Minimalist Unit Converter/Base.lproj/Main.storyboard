@@ -120,9 +120,8 @@
                                             <constraint firstItem="Jiq-Cl-ZAQ" firstAttribute="width" secondItem="vDH-wP-JjC" secondAttribute="width" id="o5i-1c-SnT"/>
                                         </constraints>
                                     </stackView>
-                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kcb-r7-GUT">
-                                        <rect key="frame" x="0.0" y="818" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Kcb-r7-GUT">
+                                        <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                         <items>
                                             <barButtonItem title="distance" id="WpI-M7-QEL">
                                                 <connections>
@@ -153,12 +152,21 @@
                                                     <action selector="weightButtonPressed:" destination="9js-8i-BYC" id="6oq-IV-VEx"/>
                                                 </connections>
                                             </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="aX8-WZ-Q3a"/>
+                                            <barButtonItem title="lenght2" id="JEM-kC-ie8">
+                                                <connections>
+                                                    <action selector="lenght2ButtonPressed:" destination="9js-8i-BYC" id="b8p-37-Fyf"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </items>
                                     </toolbar>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="Kcb-r7-GUT" firstAttribute="bottom" secondItem="YlS-xw-hFI" secondAttribute="bottom" id="Lr3-Ub-pde"/>
+                                    <constraint firstItem="Kcb-r7-GUT" firstAttribute="trailing" secondItem="YlS-xw-hFI" secondAttribute="trailing" id="YTg-2F-NEi"/>
                                     <constraint firstItem="YlS-xw-hFI" firstAttribute="trailing" secondItem="KRJ-HQ-htG" secondAttribute="trailing" constant="8" id="aqA-VT-yXJ"/>
+                                    <constraint firstItem="Kcb-r7-GUT" firstAttribute="leading" secondItem="YlS-xw-hFI" secondAttribute="leading" id="drd-1s-I0i"/>
                                     <constraint firstItem="YlS-xw-hFI" firstAttribute="bottom" secondItem="KRJ-HQ-htG" secondAttribute="bottom" constant="87" id="fYq-OQ-0Ni"/>
                                     <constraint firstItem="KRJ-HQ-htG" firstAttribute="leading" secondItem="YlS-xw-hFI" secondAttribute="leading" constant="8" id="kYx-Ld-AFf"/>
                                     <constraint firstItem="KRJ-HQ-htG" firstAttribute="top" secondItem="YlS-xw-hFI" secondAttribute="top" constant="38" id="zR9-2G-o8j"/>
@@ -173,6 +181,7 @@
                         <outlet property="bottonTextField" destination="KBT-vU-mkP" id="hoq-Tc-Nj4"/>
                         <outlet property="clearButton" destination="gtb-ZJ-xwG" id="APX-Lv-wW8"/>
                         <outlet property="distanceButton" destination="WpI-M7-QEL" id="F9P-Xc-Qc8"/>
+                        <outlet property="length2Button" destination="JEM-kC-ie8" id="9eB-r5-RpY"/>
                         <outlet property="lengthButton" destination="pu2-xE-2jr" id="9bn-BS-nSr"/>
                         <outlet property="temperatureButton" destination="9VS-th-3X7" id="3Vn-yY-BxF"/>
                         <outlet property="topLabel" destination="5Ta-la-aw7" id="LEd-Ty-yMi"/>

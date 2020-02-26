@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var lengthButton: UIBarButtonItem!
     @IBOutlet weak var volumenButton: UIBarButtonItem!
     @IBOutlet weak var weightButton: UIBarButtonItem!
+    @IBOutlet weak var length2Button: UIBarButtonItem!
     @IBOutlet weak var clearButton: UIButton!
     
     @IBOutlet weak var topTextField: UITextField!
@@ -36,15 +37,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+        
         topTextField.delegate = self
         bottonTextField.delegate = self
-
+        
         prepareToolBar()
         
         //Selected distanceButton as default when view loads
         setActiveButton(buttonSelected: distanceButton)
-      
+        
+        prepareLabelRadius()
+        
     }
     
     //MARK: - IBActions
@@ -67,6 +70,9 @@ class ViewController: UIViewController {
     @IBAction func weightButtonPressed(_ sender: UIBarButtonItem) {
          setActiveButton(buttonSelected: sender)
     }
+    @IBAction func lenght2ButtonPressed(_ sender: UIBarButtonItem) {
+        setActiveButton(buttonSelected: sender)
+    }
     
     @IBAction func clearButton(_ sender: UIButton) {
         clearTextField()
@@ -79,7 +85,8 @@ class ViewController: UIViewController {
     
     func prepareToolBar() {
         
-          distanceButton.image = UIImage.fontAwesomeIcon(name: .tachometerAlt , style: .solid, textColor: UIColor.blue, size: CGSize(width: 30, height: 30))
+        distanceButton.image = UIImage.fontAwesomeIcon(name: .tachometerAlt , style: .solid, textColor: UIColor.blue, size: CGSize(width: 30, height: 30))
+        
         temperatureButton.image = UIImage.fontAwesomeIcon(name: .thermometerHalf , style: .solid, textColor: UIColor.blue, size: CGSize(width: 30, height: 30))
         
         lengthButton.image = UIImage.fontAwesomeIcon(name: .ruler , style: .solid, textColor: UIColor.blue, size: CGSize(width: 30, height: 30))
@@ -88,9 +95,30 @@ class ViewController: UIViewController {
         
         weightButton.image = UIImage.fontAwesomeIcon(name: .balanceScaleRight , style: .solid, textColor: UIColor.blue, size: CGSize(width: 30, height: 30))
         
+        length2Button.image = UIImage.fontAwesomeIcon(name: .rulerVertical , style: .solid, textColor: UIColor.blue, size: CGSize(width: 30, height: 30))
+        
         clearButton.layer.cornerRadius = 10
         
- 
+        
+    }
+    
+    func prepareLabelRadius(){
+        
+        topLabel.clipsToBounds = true
+        topLabel.layer.cornerRadius = 5
+        topLabel.layer.maskedCorners =  [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+        
+        topTextField.clipsToBounds = true
+        topTextField.layer.cornerRadius = 5
+        topTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        
+        bottonTextField.clipsToBounds = true
+        bottonTextField.layer.cornerRadius = 5
+        bottonTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        
+        bottonLabel.clipsToBounds = true
+        bottonLabel.layer.cornerRadius = 5
+        bottonLabel.layer.maskedCorners =  [.layerMinXMaxYCorner, .layerMinXMinYCorner]
     }
     
     //Set the selected toolbar button as active
@@ -99,7 +127,7 @@ class ViewController: UIViewController {
        currentSelection(selectedButton)
         
         //Array of button IBOutlets
-        let buttonsArray = [distanceButton,temperatureButton,lengthButton, volumenButton, weightButton ]
+        let buttonsArray = [distanceButton,temperatureButton,lengthButton, volumenButton, weightButton, length2Button ]
         
         //Change the color to blue if selected else to gray
         for button in buttonsArray{
@@ -127,11 +155,14 @@ class ViewController: UIViewController {
         case "lenght":
             topLabel.text = "Foot"
             bottonLabel.text = "Metre"
+        case "lenght2":
+            topLabel.text = "Inch"
+            bottonLabel.text = "CM"
         case "volumen":
             topLabel.text = "Gallon"
             bottonLabel.text = "Litre"
         case "weight":
-            topLabel.text = "Pound"
+            topLabel.text = "Lb"
             bottonLabel.text = "Kg"
         default:
             topLabel.text = "Miles"
@@ -145,7 +176,8 @@ class ViewController: UIViewController {
         topTextField.text = ""
         bottonTextField.text = ""
     }
-
+    
+ 
 }
 
 

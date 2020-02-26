@@ -38,6 +38,8 @@ struct Calculator {
             tempValue =  3.78541 * num!
         case "weight":
             tempValue = num! * 0.45359237
+        case "lenght2":
+            tempValue = num! * 2.54
         default:
             tempValue = 1.609 * num!
         }
@@ -61,6 +63,8 @@ struct Calculator {
             tempValue = num! * 0.2641
         case "weight":
             tempValue = num! * 2.2046226218
+        case "lenght2":
+            tempValue = num! / 2.54
         default:
             tempValue = 0.621 * num!
         }
