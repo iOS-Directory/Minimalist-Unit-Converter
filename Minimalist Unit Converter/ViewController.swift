@@ -177,19 +177,19 @@ extension ViewController: UITextFieldDelegate{
         bottonTextField.endEditing(true)
         return true
     }
-
+    
+    //Call the correct method after pressing return
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
         getResult()
     }
     
-    //Helper method
+    
+    
     func getResult() {
-        //Get the input value
         guard let top = topTextFieldOutlet.text else { return }
         guard let botton = bottonTextField.text else { return }
         
-        //Check a field is empty then invoke the method to get the result
+        //Check if the field is empty then invoke the method to get the result to show result on the oppositive field
         if top.isEmpty{
             topTextFieldOutlet.text = calculator.calResult(type: currentSelection, topValue: "", bottonValue: botton)
         }else if botton.isEmpty{
