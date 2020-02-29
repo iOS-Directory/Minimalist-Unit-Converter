@@ -10,7 +10,7 @@
         <!--View Controller-->
         <scene sceneID="lbl-wR-d8y">
             <objects>
-                <viewController id="9js-8i-BYC" customClass="ViewController" customModule="Minimalist_Unit_Converter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9js-8i-BYC" customClass="ViewController" customModule="iUnit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oSf-J7-2Hn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,7 +56,7 @@
                                                             <constraint firstAttribute="height" constant="32" id="0Qj-xj-PKk"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -91,7 +91,7 @@
                                                             <constraint firstAttribute="height" constant="32" id="DCu-yZ-6a6"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>

@@ -173,8 +173,10 @@ class ViewController: UIViewController {
 
     //Clear fields
     func clearTextField() {
+        topTextField.placeholder =  ""
         topTextField.text = ""
         bottonTextField.text = ""
+        bottonTextField.placeholder =  ""
     }
     
  
@@ -213,12 +215,29 @@ extension ViewController: UITextFieldDelegate{
         
         //Check if the field is empty then invoke the method to get the result to show result on the oppositive field
         if top.isEmpty{
-            topTextField.text = calculator.calResult(type: currentSelection, topValue: "", bottonValue: botton)
+            //check if the string can be converted to a double
+            if botton.double != nil {
+                topTextField.text = calculator.calResult(type: currentSelection, topValue: "", bottonValue: botton)
+            }
+            
         }else if botton.isEmpty{
-            bottonTextField.text = calculator.calResult(type: currentSelection, topValue: top, bottonValue: "")
+            //check if the string can be converted to a double
+            if top.double != nil{
+                bottonTextField.text = calculator.calResult(type: currentSelection, topValue: top, bottonValue: "")
+            }
+            
         }
+        
     }
     
+    
+}
 
+
+//MARK: - StringProtocol
+
+//Use to check if String is a valid double in case use enter a letter in the textField it return nil
+extension StringProtocol {
+    var double: Double? {Double(self)}
 }
 

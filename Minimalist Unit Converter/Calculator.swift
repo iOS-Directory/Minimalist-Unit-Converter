@@ -11,6 +11,8 @@ import Foundation
 struct Calculator {
 
     func calResult(type: String, topValue: String = "", bottonValue: String = "") -> String {
+        
+        
         var finalValue = 00.00
         
         if !topValue.isEmpty{
