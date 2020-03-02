@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     
     //MARK: - Properties
     var calculator = Calculator()
-    var currentSelection = ""
+    private var currentSelection = ""
     
     
 
@@ -47,8 +47,8 @@ class ViewController: UIViewController {
         
         //Selected distanceButton as default when view loads
         setActiveButton(buttonSelected: distanceButton)
-        
         prepareLabelRadius()
+ 
         
     }
     
