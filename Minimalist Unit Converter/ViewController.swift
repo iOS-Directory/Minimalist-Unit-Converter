@@ -41,13 +41,8 @@ class ViewController: UIViewController {
         topTextField.delegate = self
         bottonTextField.delegate = self
         
-        let tpaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.topTextField.frame.height))
-        topTextField.leftView = tpaddingView
-        topTextField.leftViewMode = UITextField.ViewMode.always
-        let bpaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.bottonTextField.frame.height))
-        bottonTextField.leftView = bpaddingView
-        bottonTextField.leftViewMode = UITextField.ViewMode.always
-        
+ 
+        prepareTextField()
         prepareToolBar()
         
         //Selected distanceButton as default when view loads
@@ -58,37 +53,29 @@ class ViewController: UIViewController {
     }
     
     //MARK: - IBActions
-    @IBAction func distanceButtonPressed(_ sender: UIBarButtonItem) {
+    
+    //Added to one IBAction all the bar button items
+    @IBAction func toolBarButtonPressed(_ sender: UIBarButtonItem) {
         setActiveButton(buttonSelected: sender)
     }
     
-    @IBAction func tempButtonPressed(_ sender: UIBarButtonItem) {
-        setActiveButton(buttonSelected: sender)
-    }
-    
-    @IBAction func lenghtButtonPressed(_ sender: UIBarButtonItem) {
-        setActiveButton(buttonSelected: sender)
-    }
-    
-    @IBAction func volumenButtonPressed(_ sender: UIBarButtonItem) {
-        setActiveButton(buttonSelected: sender)
-    }
-    
-    @IBAction func weightButtonPressed(_ sender: UIBarButtonItem) {
-         setActiveButton(buttonSelected: sender)
-    }
-    @IBAction func lenght2ButtonPressed(_ sender: UIBarButtonItem) {
-        setActiveButton(buttonSelected: sender)
-    }
     
     @IBAction func clearButton(_ sender: UIButton) {
         clearTextField()
     }
     
-
     
     
     //MARK: - Setup UI
+    
+    func prepareTextField(){
+        let tpaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.topTextField.frame.height))
+         topTextField.leftView = tpaddingView
+         topTextField.leftViewMode = UITextField.ViewMode.always
+         let bpaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.bottonTextField.frame.height))
+         bottonTextField.leftView = bpaddingView
+         bottonTextField.leftViewMode = UITextField.ViewMode.always
+    }
     
     func prepareToolBar() {
         
@@ -157,8 +144,8 @@ class ViewController: UIViewController {
         //Change placeholder
         switch selectedButton {
         case "temp":
-            topLabel.text = "F"
-            bottonLabel.text = "C"
+            topLabel.text = "°F"
+            bottonLabel.text = "°C"
         case "lenght":
             topLabel.text = "Foot"
             bottonLabel.text = "Metre"
