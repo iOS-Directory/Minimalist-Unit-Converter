@@ -41,6 +41,13 @@ class ViewController: UIViewController {
         topTextField.delegate = self
         bottonTextField.delegate = self
         
+        let tpaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.topTextField.frame.height))
+        topTextField.leftView = tpaddingView
+        topTextField.leftViewMode = UITextField.ViewMode.always
+        let bpaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.bottonTextField.frame.height))
+        bottonTextField.leftView = bpaddingView
+        bottonTextField.leftViewMode = UITextField.ViewMode.always
+        
         prepareToolBar()
         
         //Selected distanceButton as default when view loads

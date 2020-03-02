@@ -14,7 +14,7 @@
 		0471F7DC23FFA55D000A464C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0471F7DB23FFA55D000A464C /* Assets.xcassets */; };
 		0471F7DF23FFA55D000A464C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0471F7DD23FFA55D000A464C /* LaunchScreen.storyboard */; };
 		0471F7E7240171C9000A464C /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471F7E6240171C9000A464C /* Calculator.swift */; };
-		EDB5B6EC73568BBC166DD355 /* Pods_Minimalist_Unit_Converter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4877EECF0136D3CD674A1ACE /* Pods_Minimalist_Unit_Converter.framework */; };
+		3F786ED6EE4EC69C94E14252 /* libPods-Minimalist Unit Converter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFAB2FD3DC43D9F1C1E2855 /* libPods-Minimalist Unit Converter.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,8 +28,8 @@
 		0471F7DE23FFA55D000A464C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0471F7E023FFA55D000A464C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0471F7E6240171C9000A464C /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
-		4877EECF0136D3CD674A1ACE /* Pods_Minimalist_Unit_Converter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Minimalist_Unit_Converter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86CA637BFFEDF85361D4DD05 /* Pods-Minimalist Unit Converter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Minimalist Unit Converter.debug.xcconfig"; path = "Target Support Files/Pods-Minimalist Unit Converter/Pods-Minimalist Unit Converter.debug.xcconfig"; sourceTree = "<group>"; };
+		9DFAB2FD3DC43D9F1C1E2855 /* libPods-Minimalist Unit Converter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Minimalist Unit Converter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDB5B6EC73568BBC166DD355 /* Pods_Minimalist_Unit_Converter.framework in Frameworks */,
+				3F786ED6EE4EC69C94E14252 /* libPods-Minimalist Unit Converter.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,7 +80,7 @@
 		251C550F7D765D543616E275 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4877EECF0136D3CD674A1ACE /* Pods_Minimalist_Unit_Converter.framework */,
+				9DFAB2FD3DC43D9F1C1E2855 /* libPods-Minimalist Unit Converter.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -105,7 +105,7 @@
 				0471F7CB23FFA557000A464C /* Sources */,
 				0471F7CC23FFA557000A464C /* Frameworks */,
 				0471F7CD23FFA557000A464C /* Resources */,
-				3F40A05D6F9FE5CCD37621C5 /* [CP] Embed Pods Frameworks */,
+				2B02E7705E59CC4746E8DB75 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -163,21 +163,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3F40A05D6F9FE5CCD37621C5 /* [CP] Embed Pods Frameworks */ = {
+		2B02E7705E59CC4746E8DB75 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Minimalist Unit Converter/Pods-Minimalist Unit Converter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Minimalist Unit Converter/Pods-Minimalist Unit Converter-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Minimalist Unit Converter/Pods-Minimalist Unit Converter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Minimalist Unit Converter/Pods-Minimalist Unit Converter-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Minimalist Unit Converter/Pods-Minimalist Unit Converter-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Minimalist Unit Converter/Pods-Minimalist Unit Converter-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		44BD03BF3FC2FCCABA840935 /* [CP] Check Pods Manifest.lock */ = {
