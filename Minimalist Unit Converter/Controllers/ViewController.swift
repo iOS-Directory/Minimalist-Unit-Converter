@@ -23,21 +23,53 @@ class ViewController: UIViewController {
     @IBOutlet weak var clearButton: UIButton!
     
     @IBOutlet weak var topTextField: UITextField!
-    @IBOutlet weak var bottonTextField: UITextField!
+    @IBOutlet weak var bottomTextField: UITextField!
     
     @IBOutlet weak var topLabel: UILabel!
-    @IBOutlet weak var bottonLabel: UILabel!
+    @IBOutlet weak var bottomLabel: UILabel!
     
     
     //MARK: - Properties
     var calculator = Calculator()
+    
     private var currentSelection = ""
+    
+    //Text fields Computed properties
+    private var topDisplayValue: Double{
+        get{
+            
+            if let n = topTextField.text,let value = Double(n){
+                return value
+            }
+            return 0
+        }
+        set{
+            topTextField.text = String(format:"%.2f", newValue)
+        }
+        
+    }
+    
+    private var bottomDisplayValue: Double{
+        get{
+            
+            if let n = bottomTextField.text,let value = Double(n){
+                return value
+            }
+            return 0
+        }
+        set{
+            bottomTextField.text = String(format:"%.2f", newValue)
+        }
+        
+    }
+    
+    //MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         topTextField.delegate = self
-        bottonTextField.delegate = self
+        bottomTextField.delegate = self
         
  
         prepareTextField()
@@ -68,9 +100,9 @@ class ViewController: UIViewController {
         let tpaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.topTextField.frame.height))
          topTextField.leftView = tpaddingView
          topTextField.leftViewMode = UITextField.ViewMode.always
-         let bpaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.bottonTextField.frame.height))
-         bottonTextField.leftView = bpaddingView
-         bottonTextField.leftViewMode = UITextField.ViewMode.always
+         let bpaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.bottomTextField.frame.height))
+         bottomTextField.leftView = bpaddingView
+         bottomTextField.leftViewMode = UITextField.ViewMode.always
     }
     
     //Use fontawsome icons
@@ -103,13 +135,13 @@ class ViewController: UIViewController {
         topTextField.layer.cornerRadius = 5
         topTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         
-        bottonTextField.clipsToBounds = true
-        bottonTextField.layer.cornerRadius = 5
-        bottonTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        bottomTextField.clipsToBounds = true
+        bottomTextField.layer.cornerRadius = 5
+        bottomTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         
-        bottonLabel.clipsToBounds = true
-        bottonLabel.layer.cornerRadius = 5
-        bottonLabel.layer.maskedCorners =  [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+        bottomLabel.clipsToBounds = true
+        bottomLabel.layer.cornerRadius = 5
+        bottomLabel.layer.maskedCorners =  [.layerMinXMaxYCorner, .layerMinXMinYCorner]
     }
     
     //Set the selected toolbar button as active
@@ -141,22 +173,22 @@ class ViewController: UIViewController {
         switch selectedButton {
         case "temp":
             topLabel.text = "°F"
-            bottonLabel.text = "°C"
+            bottomLabel.text = "°C"
         case "lenght":
             topLabel.text = "Foot"
-            bottonLabel.text = "Metre"
+            bottomLabel.text = "Metre"
         case "lenght2":
             topLabel.text = "Inch"
-            bottonLabel.text = "CM"
+            bottomLabel.text = "CM"
         case "volumen":
             topLabel.text = "Gallon"
-            bottonLabel.text = "Litre"
+            bottomLabel.text = "Litre"
         case "weight":
             topLabel.text = "Lb"
-            bottonLabel.text = "Kg"
+            bottomLabel.text = "Kg"
         default:
             topLabel.text = "Miles"
-            bottonLabel.text = "KM"
+            bottomLabel.text = "KM"
           
         }
     }
@@ -165,8 +197,8 @@ class ViewController: UIViewController {
     func clearTextField() {
         topTextField.placeholder =  ""
         topTextField.text = ""
-        bottonTextField.text = ""
-        bottonTextField.placeholder =  ""
+        bottomTextField.text = ""
+        bottomTextField.placeholder =  ""
     }
 }
 
@@ -185,13 +217,19 @@ extension ViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //Dismiss keyboard after user click return
         topTextField.endEditing(true)
-        bottonTextField.endEditing(true)
+        bottomTextField.endEditing(true)
         return true
     }
     
-    //Call the correct method after pressing return
+    //Call the appropiate method after pressing return
     func textFieldDidEndEditing(_ textField: UITextField) {
-        getResult()
+        //if a value was enter on the top then set result to bottom field
+        if textField == topTextField{
+            bottomDisplayValue = calculator.calResult(symbol: currentSelection, topValue: topDisplayValue)
+        //if a value was enter on the bottom then set result to top field
+        }else if textField == bottomTextField{
+            topDisplayValue = calculator.calResult(symbol: currentSelection, bottomValue: bottomDisplayValue)
+        }
     }
     
     //Prevent user from adding more than one decimal point and 2 decimal places
@@ -218,27 +256,6 @@ extension ViewController: UITextFieldDelegate{
             }
         }
         return true
-    }
-    
-    func getResult() {
-        guard let top = topTextField.text else { return }
-        guard let botton = bottonTextField.text else { return }
-        
-        //Check if the field is empty then invoke the method to get the result to show result on the oppositive field
-        if top.isEmpty{
-            //check if the string can be converted to a double
-            if botton.double != nil {
-                topTextField.text = calculator.calResult(type: currentSelection, topValue: "", bottonValue: botton)
-            }
-            
-        }else if botton.isEmpty{
-            //check if the string can be converted to a double
-            if top.double != nil{
-                bottonTextField.text = calculator.calResult(type: currentSelection, topValue: top, bottonValue: "")
-            }
-            
-        }
-        
     }
 }
 
