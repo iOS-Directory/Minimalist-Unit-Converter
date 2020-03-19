@@ -32,8 +32,6 @@ class ViewController: UIViewController {
     //MARK: - Properties
     var calculator = Calculator()
     private var currentSelection = ""
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +62,6 @@ class ViewController: UIViewController {
         clearTextField()
     }
     
-    
-    
     //MARK: - Setup UI
     
     func prepareTextField(){
@@ -77,6 +73,7 @@ class ViewController: UIViewController {
          bottonTextField.leftViewMode = UITextField.ViewMode.always
     }
     
+    //Use fontawsome icons
     func prepareToolBar() {
         
         distanceButton.image = UIImage.fontAwesomeIcon(name: .tachometerAlt , style: .solid, textColor: UIColor.blue, size: CGSize(width: 30, height: 30))
@@ -133,7 +130,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
     //Change the placeholder base on current delection
     func currentSelection(_ selectedButton: String)  {
         
@@ -172,8 +168,6 @@ class ViewController: UIViewController {
         bottonTextField.text = ""
         bottonTextField.placeholder =  ""
     }
-    
- 
 }
 
 
@@ -188,7 +182,6 @@ extension ViewController: UITextFieldDelegate{
         return true
     }
     
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //Dismiss keyboard after user click return
         topTextField.endEditing(true)
@@ -201,7 +194,31 @@ extension ViewController: UITextFieldDelegate{
         getResult()
     }
     
-    
+    //Prevent user from adding more than one decimal point and 2 decimal places
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let value = textField.text  {
+            // Allow to remove character (Backspace)
+            if string == "" {
+                return true
+            }
+            
+             //Prevent user from adding more than one decimal point
+            if value.contains(".") && string == "."{
+                return false
+            }
+             //Prevent user from adding more than 2 decimal places
+            if value.contains("."){
+                let limitDecimalPlace = 2
+                let decimalPlace = value.components(separatedBy: ".").last
+                if decimalPlace!.count < limitDecimalPlace {
+                    return true
+                }else{
+                    return false
+                }
+            }
+        }
+        return true
+    }
     
     func getResult() {
         guard let top = topTextField.text else { return }
@@ -223,8 +240,6 @@ extension ViewController: UITextFieldDelegate{
         }
         
     }
-    
-    
 }
 
 
